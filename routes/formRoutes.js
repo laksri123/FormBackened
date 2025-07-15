@@ -23,9 +23,9 @@ const upload = multer({ storage });
 router.get('/sections', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM sections');
-    console.log("result isss=>", result)
     res.json(result.rows);
   } catch (err) {
+    console.error('DB ERROR:', err); // Add this
     res.status(500).json({ error: 'Failed to fetch sections' });
   }
 });
